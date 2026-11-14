@@ -1,0 +1,546 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      name="description"
+      content="Toolfinia brings the tools and clarity you need to shape your next digital product."
+    >
+    <meta name="theme-color" content="#f7f7f2">
+    <title>Toolfinia — Make your next idea real</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --ink: #17231f;
+        --muted: #68746d;
+        --green: #237b58;
+        --green-dark: #185b41;
+        --paper: #f7f7f2;
+        --line: #e4e8df;
+        --white: #fff;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .shell {
+        width: min(1120px, calc(100% - 48px));
+        margin: 0 auto;
+      }
+
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 82px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 19px;
+        font-weight: 750;
+        letter-spacing: -0.7px;
+      }
+
+      .brand-mark {
+        display: grid;
+        width: 34px;
+        height: 34px;
+        place-items: center;
+        border-radius: 11px;
+        background: var(--green);
+        color: var(--white);
+        font-size: 18px;
+        font-weight: 800;
+      }
+
+      .nav-link {
+        color: var(--muted);
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      .nav-link:hover,
+      .nav-link:focus-visible {
+        color: var(--green-dark);
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: 1.08fr 0.92fr;
+        align-items: center;
+        gap: 64px;
+        min-height: 620px;
+        padding: 72px 0 90px;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin: 0 0 22px;
+        color: var(--green-dark);
+        font-size: 12px;
+        font-weight: 750;
+        letter-spacing: 1.2px;
+        text-transform: uppercase;
+      }
+
+      .eyebrow::before {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: #79b58d;
+        content: "";
+      }
+
+      h1 {
+        max-width: 620px;
+        margin: 0;
+        font-size: clamp(48px, 6.5vw, 76px);
+        font-weight: 720;
+        letter-spacing: -5px;
+        line-height: 1.02;
+      }
+
+      h1 span {
+        color: var(--green);
+      }
+
+      .intro {
+        max-width: 500px;
+        margin: 24px 0 0;
+        color: var(--muted);
+        font-size: 18px;
+        line-height: 1.7;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 22px;
+        margin-top: 34px;
+      }
+
+      .button {
+        display: inline-flex;
+        min-height: 50px;
+        align-items: center;
+        justify-content: center;
+        padding: 0 21px;
+        border: 1px solid var(--green);
+        border-radius: 9px;
+        background: var(--green);
+        color: var(--white);
+        font-size: 14px;
+        font-weight: 700;
+        transition: background 160ms ease, transform 160ms ease;
+      }
+
+      .button:hover {
+        transform: translateY(-2px);
+        background: var(--green-dark);
+      }
+
+      .button:focus-visible,
+      .nav-link:focus-visible,
+      .text-link:focus-visible {
+        outline: 3px solid #9ed1ad;
+        outline-offset: 3px;
+      }
+
+      .text-link {
+        color: var(--ink);
+        font-size: 14px;
+        font-weight: 650;
+      }
+
+      .text-link span {
+        margin-left: 5px;
+        color: var(--green);
+      }
+
+      .preview {
+        position: relative;
+        min-height: 390px;
+        overflow: hidden;
+        padding: 28px;
+        border: 1px solid #e8ebe3;
+        border-radius: 24px;
+        background:
+          radial-gradient(ellipse at 82% 15%, #e0efde 0, transparent 38%),
+          linear-gradient(145deg, #fff 5%, #f0f3e9 100%);
+      }
+
+      .preview-label {
+        margin: 0;
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.8px;
+        text-transform: uppercase;
+      }
+
+      .orbit {
+        position: absolute;
+        top: 72px;
+        left: 50%;
+        width: 230px;
+        height: 230px;
+        transform: translateX(-50%);
+      }
+
+      .orbit-ring {
+        position: absolute;
+        inset: 14px;
+        border: 1px solid #c7d9c7;
+        border-radius: 50%;
+      }
+
+      .orbit-ring::before,
+      .orbit-ring::after {
+        position: absolute;
+        border: 1px solid #d6e3d4;
+        border-radius: 50%;
+        content: "";
+      }
+
+      .orbit-ring::before {
+        inset: 22px -18px;
+        transform: rotate(52deg);
+      }
+
+      .orbit-ring::after {
+        inset: -18px 22px;
+        transform: rotate(52deg);
+      }
+
+      .orbit-center {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        display: grid;
+        width: 92px;
+        height: 92px;
+        place-items: center;
+        transform: translate(-50%, -50%);
+        border: 7px solid #e7f0e2;
+        border-radius: 28px;
+        background: var(--green);
+        box-shadow: 0 12px 30px #237b5830;
+        color: var(--white);
+        font-size: 38px;
+        font-weight: 800;
+      }
+
+      .orbit-dot {
+        position: absolute;
+        display: grid;
+        width: 48px;
+        height: 48px;
+        place-items: center;
+        border: 1px solid #e7eae2;
+        border-radius: 16px;
+        background: var(--white);
+        box-shadow: 0 8px 20px #17231f0c;
+        color: var(--green-dark);
+        font-size: 17px;
+        font-weight: 750;
+      }
+
+      .dot-one {
+        top: 12px;
+        left: 37px;
+      }
+
+      .dot-two {
+        top: 37px;
+        right: 3px;
+      }
+
+      .dot-three {
+        right: 31px;
+        bottom: 4px;
+      }
+
+      .dot-four {
+        bottom: 25px;
+        left: 0;
+      }
+
+      .preview-note {
+        position: absolute;
+        right: 24px;
+        bottom: 23px;
+        left: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 14px 16px;
+        border: 1px solid #e8ebe4;
+        border-radius: 12px;
+        background: #ffffffd9;
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      .preview-note strong {
+        color: var(--ink);
+        font-size: 13px;
+      }
+
+      .features {
+        padding: 26px 0 96px;
+      }
+
+      .section-heading {
+        max-width: 550px;
+        margin-bottom: 30px;
+      }
+
+      .section-heading h2 {
+        margin: 0;
+        font-size: clamp(30px, 4vw, 42px);
+        letter-spacing: -2px;
+      }
+
+      .section-heading p {
+        margin: 11px 0 0;
+        color: var(--muted);
+        font-size: 15px;
+        line-height: 1.65;
+      }
+
+      .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+      }
+
+      .feature-card {
+        min-height: 190px;
+        padding: 23px;
+        border: 1px solid var(--line);
+        border-radius: 15px;
+        background: #fff;
+      }
+
+      .feature-icon {
+        display: grid;
+        width: 38px;
+        height: 38px;
+        place-items: center;
+        border-radius: 11px;
+        background: #edf5ec;
+        color: var(--green-dark);
+        font-size: 17px;
+        font-weight: 750;
+      }
+
+      .feature-card h3 {
+        margin: 17px 0 7px;
+        font-size: 16px;
+        letter-spacing: -0.3px;
+      }
+
+      .feature-card p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.6;
+      }
+
+      footer {
+        padding: 24px 0;
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      .footer-content {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+      }
+
+      @media (max-width: 760px) {
+        .hero {
+          grid-template-columns: 1fr;
+          gap: 45px;
+          padding: 66px 0 70px;
+        }
+
+        h1 {
+          letter-spacing: -3.5px;
+        }
+
+        .preview {
+          min-height: 350px;
+        }
+
+        .feature-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .feature-card {
+          min-height: 0;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .shell {
+          width: min(100% - 32px, 1120px);
+        }
+
+        .topbar {
+          min-height: 70px;
+        }
+
+        .hero {
+          padding-top: 54px;
+        }
+
+        .intro {
+          font-size: 16px;
+        }
+
+        .preview {
+          min-height: 330px;
+          padding: 20px;
+        }
+
+        .preview-note {
+          right: 16px;
+          left: 16px;
+        }
+
+        .footer-content {
+          flex-direction: column;
+          gap: 6px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          scroll-behavior: auto !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="shell topbar">
+      <a class="brand" href="#" aria-label="Toolfinia home">
+        <span class="brand-mark" aria-hidden="true">T</span>
+        <span>Toolfinia</span>
+      </a>
+      <a class="nav-link" href="#features">Explore the toolkit</a>
+    </header>
+
+    <main>
+      <section class="shell hero" aria-labelledby="hero-title">
+        <div>
+          <p class="eyebrow">Your digital product journey starts here</p>
+          <h1 id="hero-title">Make your next idea <span>real.</span></h1>
+          <p class="intro">
+            A clearer, calmer way to shape digital products. Bring your ideas,
+            plans, and next steps together with Toolfinia.
+          </p>
+          <div class="actions">
+            <a class="button" href="#features">Explore Toolfinia</a>
+            <a class="text-link" href="#about">A little about us <span aria-hidden="true">→</span></a>
+          </div>
+        </div>
+
+        <div class="preview" aria-label="Illustration of connected product tools">
+          <p class="preview-label">One idea, moving forward</p>
+          <div class="orbit" aria-hidden="true">
+            <div class="orbit-ring"></div>
+            <div class="orbit-center">T</div>
+            <div class="orbit-dot dot-one">◎</div>
+            <div class="orbit-dot dot-two">↗</div>
+            <div class="orbit-dot dot-three">✳</div>
+            <div class="orbit-dot dot-four">✓</div>
+          </div>
+          <div class="preview-note">
+            <span><strong>From first thought</strong><br>to the next right step</span>
+            <span aria-hidden="true">✦</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="shell features" id="features" aria-labelledby="features-title">
+        <div class="section-heading">
+          <p class="eyebrow">Less scattered, more momentum</p>
+          <h2 id="features-title">A toolkit for turning plans into progress.</h2>
+          <p>
+            Keep the important parts of building a digital product in view,
+            so you can focus on what comes next.
+          </p>
+        </div>
+        <div class="feature-grid">
+          <article class="feature-card">
+            <span class="feature-icon" aria-hidden="true">✳</span>
+            <h3>Shape your idea</h3>
+            <p>Give early thoughts a clear direction and turn a big vision into manageable steps.</p>
+          </article>
+          <article class="feature-card">
+            <span class="feature-icon" aria-hidden="true">↗</span>
+            <h3>Plan with purpose</h3>
+            <p>Bring priorities together and make it easier to see what deserves your attention.</p>
+          </article>
+          <article class="feature-card">
+            <span class="feature-icon" aria-hidden="true">✓</span>
+            <h3>Keep moving forward</h3>
+            <p>Stay focused on progress, from the first sketch to your next product milestone.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="shell features" id="about" aria-labelledby="about-title">
+        <div class="section-heading">
+          <p class="eyebrow">Meet Toolfinia</p>
+          <h2 id="about-title">Good ideas deserve a clear path.</h2>
+          <p>
+            Toolfinia is a starting point for makers, creators, and teams
+            bringing digital products to life. More details will follow as the
+            toolkit takes shape.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="shell footer-content">
+        <span>© <span id="year">2026</span> Toolfinia</span>
+        <span>Made for what you’re building next.</span>
+      </div>
+    </footer>
+  </body>
+</html>
